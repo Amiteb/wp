@@ -1,13 +1,14 @@
+.recent-event-wrapper ul {
     list-style: none;
     margin:0;
     padding: 0;
 }
  
-.term-filter {
-    margin-bottom: 48px !important;
+.term-filter,.tag-filter {
+    margin-bottom: 24px !important;
 }
  
-.term-filter a {
+.term-filter a,.tag-filter a {
     display: inline-block;
     margin-right: 4px !important;
     padding: 4px 12px;
@@ -19,19 +20,19 @@
     border:none !important;
 }
  
-.term-filter a:last-child {
+.term-filter a:last-child,.tag-filter a:last-child {
     margin-right: 0 !important;
 }
  
-.term-filter a.active,
-.term-filter a:hover {
+.term-filter a.active,.tag-filter a.active,
+.term-filter a:hover,.tag-filter a:hover {
     background-color: #212121;
     color: #ffffff !important;
     opacity:1 !important;
     outline: none;
 }
  
-.recent-tuts {
+.recent-event {
     display: grid;
     grid-template-columns: repeat(4, 4fr);
     grid-row-gap: 24px;
@@ -42,49 +43,49 @@
     margin-top: 22px;
 }
  
-.recent-tuts.list {
+.recent-event.list {
     grid-template-columns: repeat(1, 1fr);
 }
  
-.recent-tuts.loading {
+.recent-event.loading {
     opacity: 0;
     transition: opacity 100ms ease-out;
 }
  
-.recent-tuts.list li {
+.recent-event.list li {
     display: table;
     width: 100%;
 }
  
-.recent-tuts.list li > * {
+.recent-event.list li > * {
     display: table-cell;
     vertical-align: middle;
 }
  
-.recent-tuts.list li > .tutorial-content {
+.recent-event.list li > .event-content {
     width: 50%;
     padding-left: 24px;
 }
  
-.recent-tuts li {
+.recent-event li {
     padding: 24px;
     background-color: #ffffff;
     box-shadow: inset 0 0 0 1px #e0e0e0;
     list-style: none;
 }
  
-.tutorial-category a {
+.event-category a {
     font-size: 0.7em;
     line-height: 1em;
 }
  
-.tutorial-title {
+.event-title {
     margin: 4px 0 16px 0 !important;
 }
  
-.tutorial-title a {border:none !important;}
+.event-title a {border:none !important;}
  
-.tutorial-tag a {
+.event-tag a {
     display: inline-block;
     vertical-align: baseline;
     padding: 4px 12px;
@@ -95,7 +96,7 @@
     text-align: center;
     border:none !important;
 }
-.recent-tuts-wrapper .term-filter {
+.recent-event-wrapper .term-filter,.recent-event-wrapper .tag-filter {
     margin: auto;
     text-align: center;
 }

@@ -257,10 +257,12 @@ final class Event_Post_Type {
         extract(shortcode_atts(
         array(
             'layout'     => 'grid', // grid / list
-            'limit'   => '3',    // int number
+            'limit'   => '10',    // int number
             'type'   => '',    // int number
             ), $atts)
         );
+        $limit = empty($limit) ? 10 : $limit;
+        var_dump($limit);
         global $post;
         $query_options = array(
             'post_type'           => 'event',
@@ -287,9 +289,9 @@ final class Event_Post_Type {
             wp_enqueue_script('event-script');
             $output = '';
             $class  = array();
-            $class[] = 'recent-tuts';
+            $class[] = 'recent-event';
             $class[] = esc_attr($layout);
-            $output .= '<div class="recent-tuts-wrapper">';
+            $output .= '<div class="recent-event-wrapper">';
             $args = array(
                 'orderby'           => 'name', 
                 'order'             => 'ASC',
@@ -314,6 +316,23 @@ final class Event_Post_Type {
                     $term_data[] = 'data-filter-id="'.$term->term_id.'"';
 
                     $output .= '<a href="'.esc_url(get_term_link($term->term_id, 'event_type')).'" class="'.esc_attr($term_class).'" '.implode(' ', $term_data).'>'.$term->name.'</a>';
+                }
+                $output .= '</div>';
+            }
+            $terms = get_terms('event_tag',$args);
+            if (count($terms) != 0){
+                $output .= '<div class="tag-filter">';
+                if (empty($start_cat)) {
+                    $output .= '<a href="'.esc_url(get_post_type_archive_link('event')).'" class="active">'.esc_html__('All','event').'</a>';
+                }
+                foreach($terms as $term){
+                    $term_class = (isset($start_cat) && !empty($start_cat) && $start_cat == $term->term_id) ? $term->slug.' active' : $term->slug;
+                    $term_data  = array();
+
+                    $term_data[] = 'data-filter="'.$term->slug.'"';
+                    $term_data[] = 'data-filter-id="'.$term->term_id.'"';
+
+                    $output .= '<a href="'.esc_url(get_term_link($term->term_id, 'event_tag')).'" class="'.esc_attr($term_class).'" '.implode(' ', $term_data).'>'.$term->name.'</a>';
                 }
                 $output .= '</div>';
             }
